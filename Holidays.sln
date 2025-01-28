@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E010C984-86C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{35AEC31F-D77C-46AD-B2F4-E4B10896A9DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holidays.Domain", "Holidays.Domain\Holidays.Domain.csproj", "{AC66F894-135A-4CF7-97B7-C4AF91ECF52C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Holidays.Domain", "Holidays.Domain\Holidays.Domain.csproj", "{AC66F894-135A-4CF7-97B7-C4AF91ECF52C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holidays.Application", "Holidays.Application\Holidays.Application.csproj", "{BEC1918A-301E-4479-8040-2CF4BF72E0AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,12 +21,17 @@ Global
 		{AC66F894-135A-4CF7-97B7-C4AF91ECF52C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC66F894-135A-4CF7-97B7-C4AF91ECF52C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC66F894-135A-4CF7-97B7-C4AF91ECF52C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEC1918A-301E-4479-8040-2CF4BF72E0AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC1918A-301E-4479-8040-2CF4BF72E0AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC1918A-301E-4479-8040-2CF4BF72E0AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC1918A-301E-4479-8040-2CF4BF72E0AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AC66F894-135A-4CF7-97B7-C4AF91ECF52C} = {E010C984-86C9-434A-BD26-54ECEBCD4907}
+		{BEC1918A-301E-4479-8040-2CF4BF72E0AA} = {E010C984-86C9-434A-BD26-54ECEBCD4907}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9DF601AB-BD9E-4759-9E1B-EA0E03286070}
