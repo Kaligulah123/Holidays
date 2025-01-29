@@ -40,7 +40,7 @@ namespace Holidays.Domain.Reviews
         {
         }
 
-        public static Result<Review> Crete(
+        public static Result<Review> Create(
             Booking booking,
             Rating rating,
             Comment comment,

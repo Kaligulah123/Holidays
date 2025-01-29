@@ -10,6 +10,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Holidays.Domain", "Holidays.Domain\Holidays.Domain.csproj", "{AC66F894-135A-4CF7-97B7-C4AF91ECF52C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holidays.Application", "Holidays.Application\Holidays.Application.csproj", "{BEC1918A-301E-4479-8040-2CF4BF72E0AA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AC66F894-135A-4CF7-97B7-C4AF91ECF52C} = {AC66F894-135A-4CF7-97B7-C4AF91ECF52C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

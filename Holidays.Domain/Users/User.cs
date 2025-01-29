@@ -13,8 +13,10 @@ namespace Holidays.Domain.Users
         private readonly List<Role> _roles = new();
         public FirstName FirstName { get; private set; }
         public LastName LastName { get; private set; }
-        public Email Email { get; private set; }       
+        public Email Email { get; private set; }
+        public string IdentityId { get; private set; } = string.Empty;
         public IReadOnlyCollection<Role> Roles => _roles.ToList();
+
 
         private User(Guid id, FirstName firstName, LastName lastname, Email email) : base(id)
         {
@@ -35,6 +37,11 @@ namespace Holidays.Domain.Users
             user._roles.Add(Role.Registered);
 
             return user;
+        }
+
+        public void SetIdentityId(string identityId)
+        {
+            IdentityId = identityId;
         }
     }
 }
