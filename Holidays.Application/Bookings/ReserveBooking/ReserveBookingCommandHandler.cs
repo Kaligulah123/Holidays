@@ -83,6 +83,5 @@ namespace Holidays.Application.Bookings.ReserveBooking
                 return Result.Failure<Guid>(BookingErrors.Overlap);
             }
         }
-    }
-    }
+    }    
 }

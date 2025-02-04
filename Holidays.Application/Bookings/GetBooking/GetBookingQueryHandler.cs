@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Holidays.Application.Abstractions.Authentication;
 using Holidays.Application.Abstractions.Data;
 using Holidays.Application.Abstractions.Messaging;
 using Holidays.Domain.Abstractions;
@@ -14,13 +13,11 @@ namespace Holidays.Application.Bookings.GetBooking
 {
     internal sealed class GetBookingQueryHandler : IQueryHandler<GetBookingQuery, BookingResponse>
     {
-        private readonly ISqlConnectionFactory _sqlConnectionFactory;
-        private readonly IUserContext _userContext;
+        private readonly ISqlConnectionFactory _sqlConnectionFactory;        
 
-        public GetBookingQueryHandler(ISqlConnectionFactory sqlConnectionFactory, IUserContext userContext)
+        public GetBookingQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
         {
-            _sqlConnectionFactory = sqlConnectionFactory;
-            _userContext = userContext;
+            _sqlConnectionFactory = sqlConnectionFactory;           
         }
 
         public async Task<Result<BookingResponse>> Handle(GetBookingQuery request, CancellationToken cancellationToken)
@@ -55,7 +52,7 @@ namespace Holidays.Application.Bookings.GetBooking
                     request.BookingId
                 });
 
-            if (booking is null || booking.UserId != _userContext.UserId)
+            if (booking is null)
             {
                 return Result.Failure<BookingResponse>(BookingErrors.NotFound);
             }

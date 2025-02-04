@@ -64,6 +64,5 @@ namespace Holidays.Application.Reviews.AddReview
 
             return Result.Success();
         }
-    }
-    }
+    }    
 }

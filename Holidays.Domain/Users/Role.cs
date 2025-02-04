@@ -20,5 +20,9 @@ namespace Holidays.Domain.Users
             Id = id; ;
             Name = name;
         }
+
+        private Role()
+        {
+        }
     }
 }

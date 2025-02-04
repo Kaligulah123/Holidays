@@ -1,6 +1,7 @@
 ﻿using Holidays.Domain.Abstractions;
 using Holidays.Domain.Apartments;
 using Holidays.Domain.Bookings.Events;
+using Holidays.Domain.Reviews;
 using Holidays.Domain.Shared;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,12 @@ namespace Holidays.Domain.Bookings
         public DateTime? CompletedOnUtc { get; private set; }
 
         public DateTime? CancelledOnUtc { get; private set; }
+
+        public ICollection<Review> Reviews { get; private set; } = new List<Review>();
+
+        private Booking()
+        {
+        }
 
         private Booking(
              Guid id,

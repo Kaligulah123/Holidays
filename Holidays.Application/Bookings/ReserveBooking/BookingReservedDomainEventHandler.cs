@@ -48,6 +48,5 @@ namespace Holidays.Application.Bookings.ReserveBooking
                 "Booking reserved!",
                 "You have 10 minutes to confirm this booking");
         }
-    }
-    }
+    }    
 }
