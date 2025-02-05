@@ -32,15 +32,19 @@ namespace Holidays.Infrastructure.Configurations
                 .HasForeignKey(review => review.ApartmentId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne<Booking>()
-                .WithMany(b => b.Reviews)
-                .HasForeignKey(review => review.BookingId)
-                .OnDelete(DeleteBehavior.NoAction);
-
             builder.HasOne<User>()
                 .WithMany()
                 .HasForeignKey(review => review.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne<Booking>()
+                .WithMany()
+                .HasForeignKey(review => review.BookingId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+
+
+
         }
     }
 }

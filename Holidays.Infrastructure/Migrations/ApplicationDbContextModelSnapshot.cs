@@ -481,7 +481,7 @@ namespace Holidays.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("Holidays.Domain.Bookings.Booking", null)
-                        .WithMany("Reviews")
+                        .WithMany()
                         .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -521,11 +521,6 @@ namespace Holidays.Infrastructure.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Holidays.Domain.Bookings.Booking", b =>
-                {
-                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

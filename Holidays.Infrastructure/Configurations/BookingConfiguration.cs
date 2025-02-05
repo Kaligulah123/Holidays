@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Holidays.Domain.Shared;
+using Holidays.Domain.Reviews;
 
 namespace Holidays.Infrastructure.Configurations
 {
@@ -65,6 +66,8 @@ namespace Holidays.Infrastructure.Configurations
             builder.HasOne<User>()
                 .WithMany()
                 .HasForeignKey(booking => booking.UserId);
+
+             
         }
     }
 }

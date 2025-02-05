@@ -1,4 +1,5 @@
 ﻿using Holidays.Domain.Abstractions;
+using Holidays.Domain.Reviews;
 using Holidays.Domain.Shared;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Holidays.Domain.Apartments
         public Money Price { get; private set; }
         public Money CleaningFee { get; private set; }
         public DateTime? LastBookedOnUtc { get; internal set; }
-        public List<Amenity> Amenities { get; private set; } = new();
+        public List<Amenity> Amenities { get; private set; } = new();     
 
         public Apartment(
             Guid id,

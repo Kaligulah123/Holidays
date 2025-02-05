@@ -39,8 +39,6 @@ namespace Holidays.Domain.Bookings
 
         public DateTime? CancelledOnUtc { get; private set; }
 
-        public ICollection<Review> Reviews { get; private set; } = new List<Review>();
-
         private Booking()
         {
         }

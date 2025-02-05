@@ -23,9 +23,9 @@ namespace Holidays.Infrastructure.Migrations
                     Address_ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address_City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address_Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price_Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price_Amount = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: false),
                     Price_Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CleaningFee_Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CleaningFee_Amount = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: false),
                     CleaningFee_Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastBookedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Amenities = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -110,13 +110,13 @@ namespace Holidays.Infrastructure.Migrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Duration_Start = table.Column<DateOnly>(type: "date", nullable: false),
                     Duration_End = table.Column<DateOnly>(type: "date", nullable: false),
-                    PriceForPeriod_Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PriceForPeriod_Amount = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: false),
                     PriceForPeriod_Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CleaningFee_Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CleaningFee_Amount = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: false),
                     CleaningFee_Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AmenitiesUpCharge_Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AmenitiesUpCharge_Amount = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: false),
                     AmenitiesUpCharge_Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TotalPrice_Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalPrice_Amount = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: false),
                     TotalPrice_Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -133,13 +133,13 @@ namespace Holidays.Infrastructure.Migrations
                         column: x => x.ApartmentId,
                         principalTable: "apartments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_bookings_users_UserId",
                         column: x => x.UserId,
                         principalTable: "users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
