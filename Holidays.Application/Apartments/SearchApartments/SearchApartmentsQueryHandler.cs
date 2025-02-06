@@ -2,10 +2,16 @@
 using Holidays.Application.Abstractions.Data;
 using Holidays.Application.Abstractions.Messaging;
 using Holidays.Domain.Abstractions;
+using Holidays.Domain.Apartments;
 using Holidays.Domain.Bookings;
+using Holidays.Domain.Shared;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,29 +44,34 @@ namespace Holidays.Application.Apartments.SearchApartments
             using var connection = _sqlConnectionFactory.CreateConnection();
 
             const string sql = """
-            SELECT
-                a.id AS Id,
-                a.name AS Name,
-                a.description AS Description,
-                a.price_amount AS Price,
-                a.price_currency AS Currency,
-                a.address_country AS Country,
-                a.address_state AS State,
-                a.address_zip_code AS ZipCode,
-                a.address_city AS City,
-                a.address_street AS Street
-            FROM apartments AS a
-            WHERE NOT EXISTS
-            (
-                SELECT 1
-                FROM bookings AS b
-                WHERE
-                    b.apartment_id = a.id AND
-                    b.duration_start <= @EndDate AND
-                    b.duration_end >= @StartDate AND
-                    b.status = ANY(@ActiveBookingStatuses)
-            )
-            """;
+                        SELECT
+                            a.Id AS Id,
+                            a.Name AS Name,
+                            a.Description AS Description,
+                            a.Price_Amount AS Price,
+                            a.Price_Currency AS Currency,
+                            a.Address_Country AS Country,
+                            a.Address_State AS State,
+                            a.Address_ZipCode AS ZipCode,
+                            a.Address_City AS City,
+                            a.Address_Street AS Street
+                        FROM apartments AS a
+                        WHERE NOT EXISTS
+                        (
+                            SELECT 1
+                            FROM bookings AS b
+                            WHERE
+                                b.ApartmentId = a.Id AND
+                                b.Duration_Start <= @EndDate AND
+                                b.Duration_End >= @StartDate
+                                AND b.Status IN @Statuses
+                        )
+                        """;
+
+            var parameters = new DynamicParameters();
+            parameters.Add("StartDate", request.StartDate);
+            parameters.Add("EndDate", request.EndDate);
+            parameters.Add("Statuses", ActiveBookingStatuses);
 
             var apartments = await connection
                 .QueryAsync<ApartmentResponse, AddressResponse, ApartmentResponse>(
@@ -68,18 +79,13 @@ namespace Holidays.Application.Apartments.SearchApartments
                     (apartment, address) =>
                     {
                         apartment.Address = address;
-
                         return apartment;
                     },
-                    new
-                    {
-                        request.StartDate,
-                        request.EndDate,
-                        ActiveBookingStatuses
-                    },
+                    parameters,
                     splitOn: "Country");
 
             return apartments.ToList();
         }
+  
     }
 }

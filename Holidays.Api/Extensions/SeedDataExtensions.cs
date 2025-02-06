@@ -33,15 +33,16 @@ namespace Holidays.Api.Extensions
                     PriceCurrency = "USD",
                     CleaningFeeAmount = faker.Random.Decimal(25, 200),
                     CleaningFeeCurrency = "USD",
-                    Amenities = new List<int> { (int)Amenity.Parking, (int)Amenity.MountainView },
-                    LastBookedOn = DateTime.MinValue
+                    Amenities = string.Join(",", new List<int> { (int)Amenity.Parking, (int)Amenity.MountainView }),
+                    LastBookedOn = DateTime.UtcNow,
+                    Version = 1,
                 });
             }
 
             const string sql = """
-            INSERT INTO public.apartments
-            (id, "name", description, address_country, address_state, address_zip_code, address_city, address_street, price_amount, price_currency, cleaning_fee_amount, cleaning_fee_currency, amenities, last_booked_on_utc)
-            VALUES(@Id, @Name, @Description, @Country, @State, @ZipCode, @City, @Street, @PriceAmount, @PriceCurrency, @CleaningFeeAmount, @CleaningFeeCurrency, @Amenities, @LastBookedOn);
+            INSERT INTO dbo.apartments
+            (Id, "Name", Description, Address_Country, Address_State, Address_ZipCode, Address_City, Address_Street, Price_Amount, price_Currency, CleaningFee_Amount, CleaningFee_Currency, Amenities, LastBookedOnUtc, Version)
+            VALUES(@Id, @Name, @Description, @Country, @State, @ZipCode, @City, @Street, @PriceAmount, @PriceCurrency, @CleaningFeeAmount, @CleaningFeeCurrency, @Amenities, @LastBookedOn, @Version);
             """;
 
             connection.Execute(sql, apartments);
